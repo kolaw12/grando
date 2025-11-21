@@ -1,0 +1,9 @@
+{
+    "build":{
+        "commands":[
+            "python manage.py migrate --noinput",
+            "python manage.py collectstatic --noinput"
+        ]
+    },
+    "start": "gunicorn grando.wsgi:application"
+}
