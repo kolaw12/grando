@@ -17,13 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 # from django.views.generic import TemplateView
-# from django.http import HttpResponse
+from django.http import HttpResponse
 
-# def home(request):
-#     return HttpResponse("<h1> HELLO WORLD - YOUR SITE IS LIVE")
+def home(request):
+    return HttpResponse("<h1> HELLO WORLD - YOUR SITE IS LIVE")
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', home),
+
     # path('',TemplateView.as_view(template_name = 'home.html'), name = 'home'),
-    path('',include('Car.urls')),
+    path('carapp/',include('Car.urls')),
+    path('', home),
 ]
