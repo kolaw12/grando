@@ -14,7 +14,7 @@ def index(request):
     rooms = []
     return render(request, 'home.html', {'rooms':rooms})
 def about(request):
-    rooms = Room.objects.all()[:2]
+    rooms = []
     return render(request, 'about.html', {'rooms':rooms})
 def amenity(request):
     return render(request, 'amenities.html')
@@ -73,7 +73,8 @@ def room_details(request, room_id):
     detail = get_object_or_404(Room, id = room_id)
     return render(request, 'room-details.html', {'detail': detail})
 def rooms(request):
-    rooms = Room.objects.all().order_by('-created')
+    # rooms = Room.objects.all().order_by('-created')
+    rooms =[]
     return render(request, 'rooms.html', {'rooms': rooms})
 def starter_page(request):
     return render(request, 'starter-page.html')
