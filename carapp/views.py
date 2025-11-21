@@ -11,7 +11,7 @@ from django.conf import settings
 # Create your views here.
 def index(request):
     rooms = Room.objects.all()[:3]
-    return render(request, 'index.html', {'rooms':rooms})
+    return render(request, 'home.html', {'rooms':rooms})
 def about(request):
     rooms = Room.objects.all()[:2]
     return render(request, 'about.html', {'rooms':rooms})
