@@ -10,7 +10,8 @@ from django.utils.html import strip_tags
 from django.conf import settings
 # Create your views here.
 def index(request):
-    rooms = Room.objects.all()[:3]
+    # rooms = Room.objects.all()[:3]
+    rooms = []
     return render(request, 'home.html', {'rooms':rooms})
 def about(request):
     rooms = Room.objects.all()[:2]
