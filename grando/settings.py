@@ -13,8 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------------
 # MEDIA FILES
 # ---------------------------------------------------------
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # ---------------------------------------------------------
 # SECURITY
@@ -125,9 +125,9 @@ USE_TZ = True
 # ---------------------------------------------------------
 # STATIC FILES (required for Railway)
 # ---------------------------------------------------------
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]  # local development
-STATIC_ROOT = BASE_DIR / "staticfiles"    # production
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
