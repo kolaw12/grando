@@ -6,7 +6,7 @@ Cleaned and optimized for Railway deployment + local development.
 from pathlib import Path
 import os
 import dj_database_url
-
+from decouple import config
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,6 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+BREVO_API_KEY = config('BREVO_API_KEY', default=None)
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='fallback@example.com')
+
+# print("BREVO_API_KEY:", os.getenv("BREVO_API_KEY"))
+# print("DEFAULT_FROM_EMAIL:", os.getenv("DEFAULT_FROM_EMAIL"))
 # ---------------------------------------------------------
 # SECURITY
 # ---------------------------------------------------------
@@ -51,8 +56,6 @@ DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
  
  
-print("BREVO_API_KEY:", os.getenv("BREVO_API_KEY"))
-print("DEFAULT_FROM_EMAIL:", os.getenv("DEFAULT_FROM_EMAIL"))
 
 
 
