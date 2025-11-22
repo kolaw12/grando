@@ -1,1 +1,4 @@
-web: gunicorn grando.wsgi:application --log-file -
+web: gunicorn grando.wsgi:application --bind 0.0.0.0:$PORT --log-file -
+
+ 
+
