@@ -51,8 +51,9 @@ DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
 
  
  
-print(os.getenv("BREVO_API_KEY"))
-print(os.getenv("DEFAULT_FROM_EMAIL"))
+print("BREVO_API_KEY:", os.getenv("BREVO_API_KEY"))
+print("DEFAULT_FROM_EMAIL:", os.getenv("DEFAULT_FROM_EMAIL"))
+
 
  
 
