@@ -33,7 +33,12 @@ CSRF_TRUSTED_ORIGINS = [
     "https://web-production-2298a.up.railway.app",
     "https://*.railway.app",
 ]
-
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'crouchp085@gmail.com'
+EMAIL_HOST_PASSWORD = 'ndyqsvksdvfxixam'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # ---------------------------------------------------------
 # INSTALLED APPS
 # ---------------------------------------------------------
@@ -44,9 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'staff',
     'carapp',  # your app
 ]
+
 
 # ---------------------------------------------------------
 # MIDDLEWARE
