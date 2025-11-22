@@ -55,6 +55,7 @@ class Room(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     amenities = models.ManyToManyField(Amenity, related_name="rooms",blank=True)
+    capacity = models.IntegerField(default=0)
     # rooms = models.ManyToManyField(RoomType, related_name="amenities")
     
     def __str__(self):
