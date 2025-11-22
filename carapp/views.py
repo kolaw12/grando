@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib import messages
 from .forms import BookingForm
-
+from anymail.message import AnymailMessage
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -21,32 +21,46 @@ def booking(request):
     if request.method == 'POST':
         bookings = BookingForm(request.POST)
         if bookings.is_valid():
-            bookings.save()
+            booking_instance = bookings.save()
+
             name = bookings.cleaned_data['name']
             email = bookings.cleaned_data['email']
             arrival_date = bookings.cleaned_data['arrival_date']
             room = bookings.cleaned_data['room']
-            mail_subject = 'BOOKING RECIEVED'
-            mail_context ={
-                'name':name,
+
+            mail_subject = 'BOOKING RECEIVED'
+            mail_context = {
+                'name': name,
                 'email': email,
                 'arrival_date': arrival_date,
-                'room': room
+                'room': room,
             }
+
             html_message = render_to_string('booking-mail.html', mail_context)
             plain_text = strip_tags(html_message)
-            from_email = settings.EMAIL_HOST_USER
-            recipient_list = [email]
+
             try:
-                email_message = EmailMessage(mail_subject,plain_text,from_email,to=recipient_list)
+                email_message = AnymailMessage(
+                    subject=mail_subject,
+                    body=plain_text,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[email],
+                )
+
+                # Attach the HTML version
+                email_message.attach_alternative(html_message, "text/html")
+
                 email_message.send()
-                messages.success(request, 'Bookings successfully')
-            except(Exception) as e:
-                messages.error(request, 'An error occured')
-                
+
+                messages.success(request, 'Booking successfully submitted!')
+            except Exception as e:
+                print("EMAIL ERROR:", e)
+                messages.error(request, 'An error occurred while sending your email.')
+
     else:
         bookings = BookingForm()
-    return render(request, 'booking.html', {'bookings':bookings})
+
+    return render(request, 'booking.html', {'bookings': bookings})
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')

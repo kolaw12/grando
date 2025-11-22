@@ -36,18 +36,22 @@ CSRF_TRUSTED_ORIGINS = [
  
  
  
+ANYMAIL = {
+    "BREVO_API_KEY": os.getenv("BREVO_API_KEY"),
+}
  
  
+ 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp-relay.brevo.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
 
-EMAIL_HOST_USER = os.getenv("BREVO_SMTP_USER")
-EMAIL_HOST_PASSWORD = os.getenv("BREVO_SMTP_KEY")
-
+ 
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+ 
+
+ 
+ 
+ 
 
 # ---------------------------------------------------------
 # INSTALLED APPS
@@ -60,7 +64,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'staff',
-    'carapp',  # your app
+    'carapp', 
+    "anymail", # your app
 ]
 
 
